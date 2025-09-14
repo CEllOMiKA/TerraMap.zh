@@ -1,0 +1,41 @@
+﻿<local:OwnedWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		  xmlns:local="clr-namespace:TerraMap"
+        xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="TerraMap.AboutWindow"
+        Title="关于 TerraMap" Height="352" Width="559" Icon="Resources/App.ico">
+    <local:OwnedWindow.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+    </local:OwnedWindow.Resources>
+    <local:OwnedWindow.DataContext>
+        <local:AboutWindowViewModel />
+    </local:OwnedWindow.DataContext>
+    <DockPanel>
+        <Button DockPanel.Dock="Bottom" HorizontalAlignment="Right" Margin="2" MinWidth="75" IsDefault="True" IsCancel="True" Click="OnCloseClicked" Content="Close"/>
+        <StackPanel Orientation="Vertical" Margin="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="Resources/App.ico" Width="64" />
+                <TextBlock Grid.Column="1" Text="TerraMap" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" />
+            </StackPanel>
+            <TextBlock HorizontalAlignment="Center"><Hyperlink NavigateUri="https://terramap.github.io" Click="OnHyperLinkClicked"><Run Text="https://terramap.github.io"/></Hyperlink></TextBlock>
+            <TextBlock HorizontalAlignment="Center"><Run Text="Version:" /><Run Text=" "/><Run Text="{Binding Version}" /></TextBlock>
+            <TextBlock HorizontalAlignment="Center"><Run Text="Copyright © Jason Coon" /><Run Text=" "/><Run Text="{Binding Year}" /></TextBlock>
+            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock><Run Text="用户文件夹:"/></TextBlock>
+                <TextBlock Grid.Column="1" TextTrimming="CharacterEllipsis"><Hyperlink NavigateUri="{Binding UserDataPath}"><Run Text="{Binding UserDataPath}" /></Hyperlink></TextBlock>
+            </Grid>
+            <TextBlock TextWrapping="Wrap"><Run Text="Terraria .wld format specification from"/><Run Text=" "/><Hyperlink NavigateUri="http://seancode.com/terrafirma" Click="OnHyperLinkClicked"><Run Text="seancode.com/terrafirma"/></Hyperlink></TextBlock>
+            <TextBlock TextWrapping="Wrap"><Run Text="Portions of TerraMap code adapted from"/><Run Text=" "/><Hyperlink NavigateUri="https://github.com/mrkite/TerraFirma" Click="OnHyperLinkClicked"><Run Text="github.com/mrkite/TerraFirma"/></Hyperlink></TextBlock>
+            <TextBlock TextWrapping="Wrap" Text="汉化:CEllOMiKA"/>
+            <TextBlock TextWrapping="Wrap"><Run Text="网页版本(@2erTwo6):"/><Run Text=" "/><Hyperlink NavigateUri="https://tr.xn--p8rt33c.top/" Click="OnHyperLinkClicked"><Run Text="https://tr.xn--p8rt33c.top/"/></Hyperlink></TextBlock>
+            <TextBlock TextWrapping="Wrap" Text="咪咪咪"/>
+        </StackPanel>
+    </DockPanel>
+</local:OwnedWindow>

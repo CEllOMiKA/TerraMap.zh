@@ -14,7 +14,7 @@ namespace TerraMap
     private string message;
     private string heading;
 
-    public static ExceptionViewModel Create(Exception exception, string heading = "发生异常")
+    public static ExceptionViewModel Create(Exception exception, string heading = "Exception Encountered")
     {
       if (exception is AggregateException aggregateException)
       {
@@ -24,7 +24,7 @@ namespace TerraMap
       return new ExceptionViewModel(exception, heading);
     }
 
-    public ExceptionViewModel(Exception exception, string heading = "发生异常")
+    public ExceptionViewModel(Exception exception, string heading = "Exception Encountered")
     {
       info = Assembly.GetEntryAssembly().GetName().Version.ToString();
       this.heading = heading;
@@ -112,7 +112,7 @@ namespace TerraMap
       }
 
       if (!string.IsNullOrEmpty(info))
-        sb.AppendLine("版本: " + info);
+        sb.AppendLine("Version: " + info);
 
       return sb.ToString();
     }

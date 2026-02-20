@@ -29,7 +29,7 @@ namespace TerraMap
 
         string staticDataFilename = Path.Combine(staticDataFileInfo.DirectoryName, "tiles.xml");
 
-        Console.WriteLine("正在读取静态数据...");
+        Console.WriteLine("Reading static data...");
 
         var world = new World
         {
@@ -38,13 +38,13 @@ namespace TerraMap
 
         var objectTypesToHighlight = GetObjectTypesToHighlight(world, options);
 
-        Console.WriteLine("正在读取世界...");
+        Console.WriteLine("Reading world...");
 
         world.Read(options.InputFile);
 
-        Console.WriteLine("已读取 {0} 个方块", world.TotalTileCount);
+        Console.WriteLine("Read {0} tiles", world.TotalTileCount);
 
-        Console.WriteLine("正在写入图像数据...");
+        Console.WriteLine("Writing image data...");
 
         var pixelFormat = PixelFormats.Bgr32;
 
@@ -69,7 +69,7 @@ namespace TerraMap
 
         if (objectTypesToHighlight.Count > 0)
         {
-          Console.WriteLine("正在写入选中项遮罩数据...");
+          Console.WriteLine("Writing selected item mask data...");
 
           world.WritePixelData(maskPixels, stride, objectTypesToHighlight);
 
@@ -98,7 +98,7 @@ namespace TerraMap
           writeableBitmap.Blit(destRect, maskWriteableBitmap, destRect, WriteableBitmapExtensions.BlendMode.Alpha);
         }
 
-        Console.WriteLine("正在写入图像文件...");
+        Console.WriteLine("Writing image file...");
 
         using (var stream = new FileStream(options.OutputFile, FileMode.Create))
         {
@@ -110,7 +110,7 @@ namespace TerraMap
 
         var elapsed = DateTime.Now - start;
 
-        world.Status = "成功写入图像，用时 " + elapsed;
+        world.Status = "Successfully wrote image in " + elapsed;
       }
       catch (Exception ex)
       {
@@ -129,13 +129,13 @@ namespace TerraMap
         {
           if (!int.TryParse(tileIdString, out int tileId))
           {
-            Console.WriteLine("命令行指定了无效的方块ID: " + tileIdString);
+            Console.WriteLine("Invalid tile ID specified on command line: " + tileIdString);
             continue;
           }
 
           if (tileId < 0 || tileId >= world.StaticData.TileInfos.Count)
           {
-            Console.WriteLine("命令行指定了无效的方块ID: " + tileId);
+            Console.WriteLine("Invalid tile ID specified on command line: " + tileId);
             continue;
           }
 
@@ -153,13 +153,13 @@ namespace TerraMap
         {
           if (!int.TryParse(itemIdString, out int itemId))
           {
-            Console.WriteLine("命令行指定了无效的物品ID: " + itemIdString);
+            Console.WriteLine("Invalid item ID specified on command line: " + itemIdString);
             continue;
           }
 
           if (itemId < 0 || itemId >= world.StaticData.ItemInfos.Count)
           {
-            Console.WriteLine("命令行指定了无效的物品ID: " + itemId);
+            Console.WriteLine("Invalid item ID specified on command line: " + itemId);
             continue;
           }
 
@@ -182,7 +182,7 @@ namespace TerraMap
 
           if (tileInfo == null && itemInfo == null)
           {
-            Console.WriteLine("命令行指定了无效的方块和/或物品名称: " + name);
+            Console.WriteLine("Invalid tile and/or item name specified on command line: " + name);
             continue;
           }
 

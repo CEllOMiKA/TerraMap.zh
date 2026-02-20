@@ -3,7 +3,7 @@
 									 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 									 xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
 									 xmlns:local="clr-namespace:TerraMap"
-									 Title="TerraMap - 世界属性" Height="480" Width="340" Icon="Resources/App.ico"
+                                     Title="泰拉瑞亚 地图查看器 - 世界 属性" Height="480" Width="340" Icon="Resources/App.ico"
 									 Loaded="OnLoaded">
   <Window.Resources>
     <CollectionViewSource x:Key="collectionViewSource" Source="{Binding Properties}" Filter="OnFilter">
@@ -29,9 +29,9 @@
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
-      <TextBlock Grid.Column="0" Margin="2">名称:</TextBlock>
+      <TextBlock Grid.Column="0" Margin="2">名称：</TextBlock>
       <TextBox Grid.Column="1" x:Name="searchBox" Margin="2" TextChanged="OnSearchTextChanged" />
-      <Button Grid.Column="2" Click="OnSearchBoxClear" ToolTip="清除">
+      <Button Grid.Column="2" Click="OnSearchBoxClear" ToolTip="Clear">
         <local:AutoGreyableImage Source="Resources/Cancel.png" Width="16" />
       </Button>
     </Grid>
@@ -40,7 +40,7 @@
         <GridView>
           <GridView.Columns>
             <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Name}" Width="Auto" />
-            <GridViewColumn Header="数值" DisplayMemberBinding="{Binding Value}" Width="Auto" />
+            <GridViewColumn Header="值" DisplayMemberBinding="{Binding Value}" Width="Auto" />
           </GridView.Columns>
         </GridView>
       </ListView.View>

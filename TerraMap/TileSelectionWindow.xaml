@@ -3,7 +3,7 @@
 									 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 									 xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
 									 xmlns:local="clr-namespace:TerraMap"
-									 Title="Select block or item - TerraMap" Height="300" Width="360"
+Title="选择 方块/物品 - TerraMap" Height="300" Width="360"
 									 Loaded="OnLoaded" Icon="Resources/App.ico">
   <Window.Resources>
     <CollectionViewSource x:Key="tileInfoViewSource" Source="{Binding ObjectInfoViewModels}" Filter="OnFilter">
@@ -32,13 +32,13 @@
         <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
-      <TextBlock Grid.Column="0" Margin="2">Name:</TextBlock>
+      <TextBlock Grid.Column="0" Margin="2">名称：</TextBlock>
       <TextBox Grid.Column="1" x:Name="searchBox" Margin="2" TextChanged="OnSearchTextChanged" />
-      <Button Grid.Column="2" Click="OnSearchBoxClear" ToolTip="Clear">
+      <Button Grid.Column="2" Click="OnSearchBoxClear" ToolTip="清除">
         <local:AutoGreyableImage Source="Resources/Cancel.png" Width="16" />
       </Button>
-      <Button Grid.Column="3" Click="OnCheckAll">Check All</Button>
-      <Button Grid.Column="4" Click="OnUncheckAll">Uncheck All</Button>
+      <Button Grid.Column="3" Click="OnCheckAll">全选</Button>
+      <Button Grid.Column="4" Click="OnUncheckAll">取消全选</Button>
     </Grid>
     <Grid DockPanel.Dock="Bottom">
       <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
@@ -46,8 +46,8 @@
 				<Button IsDefault="True" Click="OnCustomize" HorizontalAlignment="Left">_Customize...</Button>
 			</StackPanel>-->
       <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-        <Button IsDefault="True" Click="OnAccept" MinWidth="75">_OK</Button>
-        <Button IsCancel="True" Click="OnCancel" Visibility="Collapsed">_Cancel</Button>
+        <Button IsDefault="True" Click="OnAccept" MinWidth="75">_确定</Button>
+        <Button IsCancel="True" Click="OnCancel" Visibility="Collapsed">_取消</Button>
       </StackPanel>
     </Grid>
     <ItemsControl ItemsSource="{Binding Source={StaticResource tileInfoViewSource}}" TextSearch.TextPath="Name" 

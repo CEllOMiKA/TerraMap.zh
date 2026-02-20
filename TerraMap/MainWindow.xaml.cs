@@ -257,7 +257,7 @@ namespace TerraMap
 
       OpenFileDialog dialog = new OpenFileDialog
       {
-        Filter = "World Files (*.wld)|*.wld|World Backup Files (*.bak)|*.*.bak|All Files (*.*)|*.*"
+        Filter = "世界 文件 (*.wld)|*.wld|世界 备份 文件 (*.bak)|*.*.bak|所有 文件 (*.*)|*.*"
       };
 
       if (Directory.Exists(path))
@@ -283,7 +283,7 @@ namespace TerraMap
 
       this.viewModel.SelectedWorldFile = this.viewModel.WorldFiles.FirstOrDefault(w => w.FileInfo.FullName == filename);
 
-      this.Title = "World Info - " + filename;
+      this.Title = "世界信息 - " + filename;
 
       this.viewModel.Filename = filename;
 
@@ -299,7 +299,7 @@ namespace TerraMap
       this.viewModel.InstructionsVisibility = Visibility.Collapsed;
 
       this.viewModel.ProgressValue = 0;
-      this.viewModel.BeginLoading("Reading world...");
+      this.viewModel.BeginLoading("正在读取世界...");
       try
       {
         var timer = new DispatcherTimer(TimeSpan.FromMilliseconds(100), DispatcherPriority.Background, this.OnDispatcherTimerTick, this.Dispatcher);
@@ -307,7 +307,7 @@ namespace TerraMap
 
         await world.ReadAsync(filename);
 
-        this.Title = "TerraMap - " + world.Name;
+        this.Title = "泰拉瑞亚 地图查看器 - " + world.Name;
 
         this.viewModel.TotalTileCount = world.TotalTileCount;
 
@@ -323,7 +323,7 @@ namespace TerraMap
 
         this.viewModel.IsLoaded = true;
 
-        world.Status = "Drawing map";
+        world.Status = "正在绘制地图";
 
         width = world.WorldWidthinTiles;
         height = world.WorldHeightinTiles;
@@ -360,7 +360,7 @@ namespace TerraMap
 
         if (this.viewModel.SelectedMapFile == null || this.viewModel.SelectedMapFile.Name == "(No Spoilers)")
         {
-          this.viewModel.Instructions = "请选择一名玩家或 (全部剧透) 进行查看。";
+          this.viewModel.Instructions = "请从玩家列表中选择玩家或 (All Spoilers)。";
           this.viewModel.InstructionsVisibility = Visibility.Visible;
         }
 
@@ -368,13 +368,13 @@ namespace TerraMap
 
         if (this.viewModel.IsHighlighting)
           world.Status = string.Format(
-            "已加载并高亮显示 {0:N0}/{1:N0} 个方块 ({2:P0})，用时 {3:N1} 秒",
+            "已加载并高亮 {0:N0} / {1:N0} 方块 ({2:P0})，耗时 {3:N1} 秒",
             this.viewModel.HighlightedTileCount,
             this.viewModel.TotalTileCount,
             (float)this.viewModel.HighlightedTileCount / (float)this.viewModel.TotalTileCount,
             elapsed.TotalSeconds);
         else
-          world.Status = world.Status = string.Format("已加载 {0:N0} 个方块，用时 {1:N1} 秒", this.viewModel.TotalTileCount, elapsed.TotalSeconds);
+          world.Status = world.Status = string.Format("已加载 {0:N0} 个方块，耗时 {1:N1} 秒", this.viewModel.TotalTileCount, elapsed.TotalSeconds);
       }
       finally
       {
@@ -386,7 +386,7 @@ namespace TerraMap
     {
       OpenFileDialog dialog = new OpenFileDialog
       {
-        Filter = "Player Map Files (*.map)|*.map|All Files (*.*)|*.*"
+        Filter = "玩家 地图 文件 (*.map)|*.map|所有 文件 (*.*)|*.*"
       };
 
       string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games\\Terraria\\Players");
@@ -419,7 +419,7 @@ namespace TerraMap
 
       if (this.viewModel.SelectedMapFile == null || this.viewModel.SelectedMapFile.Name == "(No Spoilers)")
       {
-        this.viewModel.Instructions = "请选择一名玩家或 (全部剧透) 进行查看。";
+        this.viewModel.Instructions = "Please select a player or (All Spoilers) from the Players list.";
         this.viewModel.InstructionsVisibility = Visibility.Visible;
       }
       else
@@ -468,7 +468,7 @@ namespace TerraMap
 
       var start = DateTime.Now;
 
-      this.viewModel.BeginLoading("Updating map");
+      this.viewModel.BeginLoading("正在更新地图");
       this.viewModel.ProgressValue = 0;
 
       var timer = new DispatcherTimer(TimeSpan.FromMilliseconds(20), DispatcherPriority.Background, this.OnDispatcherTimerTick, this.Dispatcher);
@@ -491,13 +491,13 @@ namespace TerraMap
 
       if (this.viewModel.IsHighlighting)
         world.Status = string.Format(
-          "已高亮显示 {0:N0}/{1:N0} 个方块 ({2:P0})，用时 {3:N1} 秒",
+          "Highlighted {0:N0} out of {1:N0} blocks ({2:P0}) in {3:N1} seconds",
           this.viewModel.HighlightedTileCount,
           this.viewModel.TotalTileCount,
           (float)this.viewModel.HighlightedTileCount / (float)this.viewModel.TotalTileCount,
           elapsed.TotalSeconds);
       else
-        world.Status = string.Format("已更新 {0:N0} 个方块，用时 {1:N1} 秒", this.viewModel.TotalTileCount, elapsed.TotalSeconds);
+        world.Status = string.Format("Updated {0:N0} blocks in {1:N1} seconds", this.viewModel.TotalTileCount, elapsed.TotalSeconds);
 
       //if (this.viewModel.IsHighlighting)
       //	highlightStoryboard.Begin();
@@ -516,7 +516,7 @@ namespace TerraMap
 
       var start = DateTime.Now;
 
-      this.viewModel.BeginLoading("Updating map");
+      this.viewModel.BeginLoading("正在更新地图");
       this.viewModel.ProgressValue = 0;
 
       var timer = new DispatcherTimer(TimeSpan.FromMilliseconds(20), DispatcherPriority.Background, this.OnDispatcherTimerTick, this.Dispatcher);
@@ -534,7 +534,7 @@ namespace TerraMap
 
       var elapsed = DateTime.Now - start;
 
-      world.Status = string.Format("已更新 {0:N0} 个方块的雾，用时 {1:N1} 秒", this.viewModel.TotalTileCount, elapsed.TotalSeconds);
+      world.Status = string.Format("Updated fog for {0:N0} blocks in {1:N1} seconds", this.viewModel.TotalTileCount, elapsed.TotalSeconds);
 
       this.viewModel.EndLoading();
     }
@@ -566,7 +566,7 @@ namespace TerraMap
     {
       SaveFileDialog dialog = new SaveFileDialog
       {
-        Filter = "PNG Images (*.png)|*.png",
+        Filter = "PNG 图像 (*.png)|*.png",
         Title = this.viewModel.World.Name
       };
       var result = dialog.ShowDialog() ?? false;
@@ -581,8 +581,7 @@ namespace TerraMap
       FileInfo fileInfo = new FileInfo(filename);
       if (fileInfo.Exists && fileInfo.Extension == ".wld")
       {
-        // 保存时防止覆盖wld文件
-        MessageBox.Show(this, "很抱歉，不能覆盖 .wld 文件。\r\n\r\n请确保文件名以 png 结尾。:)", "TerraMap");
+        MessageBox.Show(this, "抱歉，无法覆盖 .wld 文件。\r\n\r\n请确保指定以 .png 结尾的文件名。", "TerraMap");
         return;
       }
 
@@ -624,7 +623,7 @@ namespace TerraMap
     {
       SaveFileDialog dialog = new SaveFileDialog
       {
-        Filter = "Tab-Delimited Text Files (*.txt)|*.txt|Comma Separated Values Files (*.csv)|*.csv"
+        Filter = "制表符分隔文本 (*.txt)|*.txt|逗号分隔值 (*.csv)|*.csv"
       };
       var result = dialog.ShowDialog() ?? false;
       if (!result)
@@ -638,8 +637,7 @@ namespace TerraMap
       FileInfo fileInfo = new FileInfo(filename);
       if (fileInfo.Exists && fileInfo.Extension == ".wld")
       {
-        // 导出高亮格子位置时防止覆盖wld文件
-        MessageBox.Show(this, "很抱歉，不能覆盖 .wld 文件。\r\n\r\n请确保文件名以 txt 或 csv 结尾。:)", "TerraMap");
+        MessageBox.Show(this, "抱歉，无法覆盖 .wld 文件。\r\n\r\n请确保指定以 .txt 或 .csv 结尾的文件名。", "TerraMap");
         return;
       }
 
@@ -653,9 +651,8 @@ namespace TerraMap
 
       var elapsed = DateTime.Now - start;
 
-      // 导出高亮格子位置
       this.viewModel.World.Status = string.Format(
-        "已导出 {0:N0}/{1:N0} 个方块 ({2:P0})，用时 {3:N1} 秒",
+        "已导出 {0:N0} / {1:N0} 方块 ({2:P0})，耗时 {3:N1} 秒",
         this.viewModel.HighlightedTileCount,
         this.viewModel.TotalTileCount,
         (float)this.viewModel.HighlightedTileCount / (float)this.viewModel.TotalTileCount,
@@ -698,7 +695,7 @@ namespace TerraMap
 
     private async Task FindTile(SearchDirection direction)
     {
-      this.viewModel.BeginLoading("Finding tile...");
+      this.viewModel.BeginLoading("正在查找方块...");
 
       TileHitTestInfo tileHitTestInfo = null;
 
@@ -876,7 +873,7 @@ namespace TerraMap
 
         this.viewModel.ProgressValue += this.viewModel.World.WorldHeightinTiles;
 
-        this.viewModel.World.Status = string.Format("Checking tile {0:N0} of {1:N0} ({2:P0})...", this.viewModel.ProgressValue, this.viewModel.ProgressMaximum, (float)this.viewModel.ProgressValue / (float)this.viewModel.ProgressMaximum);
+        this.viewModel.World.Status = string.Format("正在检查方块 {0:N0} / {1:N0} ({2:P0})...", this.viewModel.ProgressValue, this.viewModel.ProgressMaximum, (float)this.viewModel.ProgressValue / (float)this.viewModel.ProgressMaximum);
       }
 
       if (matchingTile == null)
@@ -942,7 +939,7 @@ namespace TerraMap
       {
         if (isUserInitiated)
         {
-          ExceptionWindow.ShowDialog(new Exception("检查更新时出现问题", ex));
+          ExceptionWindow.ShowDialog(new Exception("There was a problem checking for updates", ex));
         }
         else
         {
@@ -1027,10 +1024,10 @@ namespace TerraMap
         }
       }
 
-      this.viewModel.ObjectInfoViewModels.Add(new ObjectInfoViewModel() { Name = "Red Wire", IsRedWire = true });
-      this.viewModel.ObjectInfoViewModels.Add(new ObjectInfoViewModel() { Name = "Green Wire", IsGreenWire = true });
-      this.viewModel.ObjectInfoViewModels.Add(new ObjectInfoViewModel() { Name = "Blue Wire", IsBlueWire = true });
-      this.viewModel.ObjectInfoViewModels.Add(new ObjectInfoViewModel() { Name = "Yellow Wire", IsYellowWire = true });
+      this.viewModel.ObjectInfoViewModels.Add(new ObjectInfoViewModel() { Name = "红色 导线", IsRedWire = true });
+      this.viewModel.ObjectInfoViewModels.Add(new ObjectInfoViewModel() { Name = "绿色 导线", IsGreenWire = true });
+      this.viewModel.ObjectInfoViewModels.Add(new ObjectInfoViewModel() { Name = "蓝色 导线", IsBlueWire = true });
+      this.viewModel.ObjectInfoViewModels.Add(new ObjectInfoViewModel() { Name = "黄色 导线", IsYellowWire = true });
 
       // load wall viewmodels
       foreach (var wallInfo in staticData.WallInfos)
@@ -1362,7 +1359,7 @@ namespace TerraMap
         {
           if (isUserInitiated)
           {
-            ExceptionWindow.ShowDialog(new Exception("检查更新时出现问题", e.Error));
+            ExceptionWindow.ShowDialog(new Exception("检查更新时出错", e.Error));
           }
           else
           {
@@ -1384,7 +1381,7 @@ namespace TerraMap
         if (releases == null || releases.Count < 1)
         {
           if (isUserInitiated)
-            MessageBox.Show("未发现新版本。", "TerraMap 更新", MessageBoxButton.OK, MessageBoxImage.None);
+            MessageBox.Show("未发现更新。", "TerraMap 更新", MessageBoxButton.OK, MessageBoxImage.None);
 
           return;
         }
@@ -1405,7 +1402,7 @@ namespace TerraMap
       {
         if (isUserInitiated)
         {
-          ExceptionWindow.ShowDialog(new Exception("检查更新时出现问题", ex));
+          ExceptionWindow.ShowDialog(new Exception("检查更新时出错", ex));
         }
         else
         {

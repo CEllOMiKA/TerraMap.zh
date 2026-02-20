@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         mc:Ignorable="d"
-        Width="480" Height="320" Title="TerraMap"
+        Width="480" Height="320" Title="TerraMap - 错误"
         PreviewKeyDown="Window_PreviewKeyDown" KeyDown="Window_KeyDown"
         FocusManager.FocusedElement="{Binding ElementName=exceptionControl}"
         d:DataContext="{d:DesignInstance sys:Exception, IsDesignTimeCreatable=True}" Icon="Resources/App.ico">

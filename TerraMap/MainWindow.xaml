@@ -11,27 +11,27 @@
         WindowState="Maximized" Loaded="OnLoaded"
         Title="TerraMap" Height="480" Width="1024" 
         Icon="Resources/App.ico">
-    <Window.DataContext>
-        <local:MainWindowViewModel TileName="Gold Chest" Status="Status" Position="3, 300" ProgressValue="100" ProgressMaximum="100" IsLoading="True">
-            <local:MainWindowViewModel.World>
-                <data:World Status="Status">
-                    <data:World.NPCs>
-                        <data:NPC Type="Merchant" Name="Bob" />
-                        <data:NPC Type="Plumber" Name="Alice" />
-                    </data:World.NPCs>
-                </data:World>
-            </local:MainWindowViewModel.World>
-            <local:MainWindowViewModel.CurrentChestItemNames>
-                <x:Array Type="sys:String">
-                    <sys:String>Wooden Arrow</sys:String>
-                    <sys:String>Iron Sword</sys:String>
-                    <sys:String>Torch</sys:String>
-                </x:Array>
-            </local:MainWindowViewModel.CurrentChestItemNames>
-        </local:MainWindowViewModel>
-    </Window.DataContext>
-            
-    <Window.Resources>
+  <Window.DataContext>
+    <local:MainWindowViewModel TileName="金箱" Status="状态" Position="3, 300" ProgressValue="100" ProgressMaximum="100" IsLoading="True">
+      <local:MainWindowViewModel.World>
+        <data:World Status="Status">
+          <data:World.NPCs>
+            <data:NPC Type="商人" Name="鲍勃" />
+            <data:NPC Type="水管工" Name="艾莉丝" />
+          </data:World.NPCs>
+        </data:World>
+      </local:MainWindowViewModel.World>
+      <local:MainWindowViewModel.CurrentChestItemNames>
+        <x:Array Type="sys:String">
+          <sys:String>木制箭矢</sys:String>
+          <sys:String>铁剑</sys:String>
+          <sys:String>火把</sys:String>
+        </x:Array>
+      </local:MainWindowViewModel.CurrentChestItemNames>
+    </local:MainWindowViewModel>
+  </Window.DataContext>
+
+  <Window.Resources>
     <local:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -98,10 +98,10 @@
     <KeyBinding Gesture="Ctrl+8" Command="local:Commands.HighlightSet" CommandParameter="8" />
     <KeyBinding Gesture="Ctrl+9" Command="local:Commands.HighlightSet" CommandParameter="9" />
   </Window.InputBindings>
-  <DockPanel LastChildFill="True">
+    <DockPanel LastChildFill="True">
     <Menu DockPanel.Dock="Top" IsMainMenu="True">
       <MenuItem Header="_文件">
-        <MenuItem Header="打开世界(_W)" ItemsSource="{Binding WorldFiles}" SubmenuOpened="OnWorldsDropDownOpened">
+        <MenuItem Header="打开 _世界" ItemsSource="{Binding WorldFiles}" SubmenuOpened="OnWorldsDropDownOpened">
           <MenuItem.ItemTemplate>
             <DataTemplate>
               <TextBlock Text="{Binding Name}" ToolTip="{Binding FileInfo.FullName}" />
@@ -122,7 +122,7 @@
             </Style>
           </MenuItem.Resources>
         </MenuItem>
-        <MenuItem Header="打开玩家(_P)" ItemsSource="{Binding MapFiles}" SubmenuOpened="OnMapsDropDownOpened">
+        <MenuItem Header="打开 _玩家" ItemsSource="{Binding MapFiles}" SubmenuOpened="OnMapsDropDownOpened">
           <MenuItem.ItemTemplate>
             <DataTemplate>
               <TextBlock Text="{Binding Name}" ToolTip="{Binding FileInfo.FullName}" />
@@ -143,32 +143,32 @@
             </Style>
           </MenuItem.Resources>
         </MenuItem>
-        <MenuItem Command="Open" Header="打开世界...">
+        <MenuItem Command="Open" Header="_打开 世界...">
           <MenuItem.Icon>
             <local:AutoGreyableImage Source="Resources/OpenFolder_16x.png" Width="16" />
           </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Command="local:Commands.OpenPlayerMapFile" Header="打开玩家地图...">
+        <MenuItem Command="local:Commands.OpenPlayerMapFile" Header="打开 玩家 地图...">
           <MenuItem.Icon>
             <local:AutoGreyableImage Source="Resources/OpenFile_16x.png" Width="16" />
           </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Command="Save" Header="保存...">
+        <MenuItem Command="Save" Header="_保存...">
           <MenuItem.Icon>
             <local:AutoGreyableImage Source="Resources/Save.png" Width="16" />
           </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Command="local:Commands.ExportHighlightedTilePositions" Header="导出高亮格子位置..." />
+        <MenuItem Command="local:Commands.ExportHighlightedTilePositions" Header="_导出 高亮方块 位置..." />
           <Separator />
-        <MenuItem Command="Close" Header="退出(_X)" InputGestureText="Alt+F4" />
+        <MenuItem Command="Close" Header="_退出" InputGestureText="Alt+F4" />
       </MenuItem>
       <MenuItem Header="_视图">
-        <MenuItem Command="local:Commands.ZoomToOriginal" Header="缩放至100%">
+        <MenuItem Command="local:Commands.ZoomToOriginal" Header="缩放到 100%">
           <MenuItem.Icon>
             <local:AutoGreyableImage Source="Resources/zoomOriginal.png" Width="16" />
           </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Command="local:Commands.ZoomToFit" Header="适应窗口">
+        <MenuItem Command="local:Commands.ZoomToFit" Header="缩放以_适应">
           <MenuItem.Icon>
             <local:AutoGreyableImage Source="Resources/zoomFit.png" Width="16" />
           </MenuItem.Icon>
@@ -185,8 +185,8 @@
           </MenuItem.Icon>
         </MenuItem>
         <Separator />
-        <MenuItem IsChecked="{Binding IsHighlighting}" Click="OnToggleIsHighlighting" Header="全部高亮" />
-        <MenuItem IsChecked="{Binding World.InvertHighlight}" Click="OnToggleInvertHighlight" Header="反转高亮" />
+        <MenuItem IsChecked="{Binding IsHighlighting}" Click="OnToggleIsHighlighting" Header="高亮 所有" />
+        <MenuItem IsChecked="{Binding World.InvertHighlight}" Click="OnToggleInvertHighlight" Header="反转 高亮" />
         <Separator />
         <MenuItem Command="Refresh">
           <MenuItem.Icon>
@@ -200,26 +200,26 @@
         </MenuItem>
       </MenuItem>
       <MenuItem Header="_导航">
-        <MenuItem Command="Find" Header="选择方块/物品..." InputGestureText="Ctrl+F" />
-        <MenuItem Command="PreviousPage" Header="上一个匹配" InputGestureText="Shift+F3">
+        <MenuItem Command="Find" Header="选择 方块/物品..." InputGestureText="Ctrl+F" />
+        <MenuItem Command="PreviousPage" Header="上一个 匹配" InputGestureText="Shift+F3">
           <MenuItem.Icon>
             <local:AutoGreyableImage Source="Resources/Previous.png" Width="16" />
           </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Command="BrowseStop" Header="清除匹配">
+        <MenuItem Command="BrowseStop" Header="清除 匹配">
           <MenuItem.Icon>
             <local:AutoGreyableImage Source="Resources/Cancel.png" Width="16" />
           </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Command="NextPage" Header="下一个匹配" InputGestureText="F3">
+        <MenuItem Command="NextPage" Header="下一个 匹配" InputGestureText="F3">
           <MenuItem.Icon>
             <local:AutoGreyableImage Source="Resources/Next.png" Width="16" />
           </MenuItem.Icon>
         </MenuItem>
         <Separator />
-        <MenuItem Command="local:Commands.NavigateToSpawn" Header="出生点" InputGestureText="Home" />
-        <MenuItem Command="local:Commands.NavigateToDungeon" Header="地牢" InputGestureText="End" />
-        <MenuItem x:Name="menuItemNpcs" Header="NPC列表" ItemsSource="{Binding NPCs}">
+        <MenuItem Command="local:Commands.NavigateToSpawn" Header="_出生点" InputGestureText="Home" />
+        <MenuItem Command="local:Commands.NavigateToDungeon" Header="_地牢" InputGestureText="End" />
+        <MenuItem x:Name="menuItemNpcs" Header="_NPC 列表" ItemsSource="{Binding NPCs}">
           <MenuItem.ItemTemplate>
             <DataTemplate>
               <TextBlock Text="{Binding DisplayName}" />
@@ -232,12 +232,12 @@
           </MenuItem.Resources>
         </MenuItem>
       </MenuItem>
-      <MenuItem Header="_预设" IsEnabled="{Binding IsLoading, Converter={StaticResource InvertedBooleanConverter}}">
+      <MenuItem Header="_集合" IsEnabled="{Binding IsLoading, Converter={StaticResource InvertedBooleanConverter}}">
         <MenuItem.ItemsSource>
           <CompositeCollection>
             <CollectionContainer Collection="{Binding Source={StaticResource Sets}}" />
             <Separator />
-            <MenuItem Header="编辑预设..." Click="OnEditSets" />
+            <MenuItem Header="编辑 集合..." Click="OnEditSets" />
           </CompositeCollection>
         </MenuItem.ItemsSource>
         <MenuItem.Resources>
@@ -253,17 +253,17 @@
         </MenuItem.ItemTemplate>
       </MenuItem>
       <MenuItem Header="_帮助">
-        <MenuItem Header="检查更新" Click="OnCheckForUpdates" IsEnabled="{Binding IsCheckingForUpdate, Converter={StaticResource InvertedBooleanConverter}}" />
+        <MenuItem Header="_检查 更新" Click="OnCheckForUpdates" IsEnabled="{Binding IsCheckingForUpdate, Converter={StaticResource InvertedBooleanConverter}}" />
         <Separator />
-        <MenuItem Header="关于" Click="OnShowAboutWindow">
+        <MenuItem Header="_关于" Click="OnShowAboutWindow">
           <MenuItem.Icon>
             <local:AutoGreyableImage Width="16" Source="Resources/information-white.png" />
           </MenuItem.Icon>
         </MenuItem>
       </MenuItem>
-      <MenuItem Click="OnUpdateClicked" Visibility="{Binding UpdateVisibility}" ToolTip="有新版本可用" Padding="0">
+      <MenuItem Click="OnUpdateClicked" Visibility="{Binding UpdateVisibility}" ToolTip="有可用的 TerraMap 新版本" Padding="0">
         <MenuItem.Header>
-          <Label Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center">更新</Label>
+        <Label Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center">_更新</Label>
         </MenuItem.Header>
         <MenuItem.Icon>
           <local:AutoGreyableImage Width="16" Source="Resources/information-white.png" VerticalAlignment="Center" />
@@ -273,7 +273,7 @@
     <ToolBarTray DockPanel.Dock="Top">
       <ToolBar Band="0" BandIndex="0" Name="File"
 						IsEnabled="{Binding IsLoading, Converter={StaticResource InvertedBooleanConverter}}">
-        <TextBlock VerticalAlignment="Center">世界:</TextBlock>
+        <TextBlock VerticalAlignment="Center">世界：</TextBlock>
         <ComboBox ItemsSource="{Binding WorldFiles}" SelectedItem="{Binding SelectedWorldFile}" 
 					SelectionChanged="OnSelectedWorldFileChanged" DropDownOpened="OnWorldsDropDownOpened">
           <ComboBox.ItemTemplate>
@@ -285,7 +285,7 @@
             </DataTemplate>
           </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBlock VerticalAlignment="Center">玩家:</TextBlock>
+        <TextBlock VerticalAlignment="Center">玩家：</TextBlock>
         <ComboBox ItemsSource="{Binding MapFiles}" SelectedItem="{Binding SelectedMapFile}" 
 					SelectionChanged="OnSelectedMapFileChanged" DropDownOpened="OnMapsDropDownOpened">
           <ComboBox.ItemTemplate>
@@ -297,34 +297,34 @@
             </DataTemplate>
           </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button Command="Open" ToolTip="打开世界">
+        <Button Command="Open" ToolTip="打开 世界">
           <local:AutoGreyableImage Source="Resources/OpenFolder_16x.png" Width="16" />
         </Button>
-        <Button Command="local:Commands.OpenPlayerMapFile" ToolTip="打开玩家地图">
+        <Button Command="local:Commands.OpenPlayerMapFile" ToolTip="打开 玩家 地图">
           <local:AutoGreyableImage Source="Resources/OpenFile_16x.png" Width="16" />
         </Button>
-        <Button Command="Save" ToolTip="保存图片">
+        <Button Command="Save" ToolTip="保存 图片">
           <local:AutoGreyableImage Source="Resources/Save.png" Width="16" />
         </Button>
         <Button Command="Refresh" ToolTip="刷新">
           <local:AutoGreyableImage Width="16" Source="Resources/Refresh.png" />
         </Button>
-        <Button Command="Properties" ToolTip="世界属性">
+        <Button Command="Properties" ToolTip="世界 属性">
           <local:AutoGreyableImage Width="16" Source="Resources/Properties.png" />
         </Button>
       </ToolBar>
       <ToolBar Band="0" BandIndex="1" Name="View">
-        <Button Command="local:Commands.ZoomToOriginal" ToolTip="缩放至100%">
+        <Button Command="local:Commands.ZoomToOriginal" ToolTip="Zoom to 100%">
           <local:AutoGreyableImage Source="Resources/zoomOriginal.png" Width="16" />
         </Button>
-        <Button Command="local:Commands.ZoomToFit" ToolTip="适应窗口">
+        <Button Command="local:Commands.ZoomToFit" ToolTip="Zoom to fit">
           <local:AutoGreyableImage Source="Resources/zoomFit.png" Width="16" />
         </Button>
         <Separator />
-        <Button Command="DecreaseZoom" ToolTip="缩小">
+        <Button Command="DecreaseZoom" ToolTip="Zoom out">
           <local:AutoGreyableImage Source="Resources/zoomOut.png" Width="16" />
         </Button>
-        <Button Command="IncreaseZoom" ToolTip="放大">
+        <Button Command="IncreaseZoom" ToolTip="Zoom in">
           <local:AutoGreyableImage Source="Resources/zoomIn.png" Width="16" />
         </Button>
       </ToolBar>
@@ -362,22 +362,22 @@
                   <ColumnDefinition Width="Auto" />
                   <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Margin="2" VerticalAlignment="Center">名称:</TextBlock>
+                <TextBlock Grid.Column="0" Margin="2" VerticalAlignment="Center">名称：</TextBlock>
                 <TextBox Grid.Column="1" x:Name="searchBox" Margin="2" TextChanged="OnSearchTextChanged" />
                 <Button Grid.Column="2" Margin="2" Padding="2" Click="OnSearchBoxClear" ToolTip="清除">
                   <local:AutoGreyableImage Source="Resources/Cancel.png" Width="16" />
                 </Button>
                 <Button Grid.Column="3" Margin="2" Padding="2" Click="OnCheckAll"
 										  IsEnabled="{Binding ElementName=checkBoxBlocksDropDown, Path=DataContext.IsLoading, Converter={StaticResource InvertedBooleanConverter}}"
-										  Content="全选" />
+                                          Content="全选" />
                 <Button Grid.Column="4" Margin="2" Padding="2" Click="OnUncheckAll"
 										  IsEnabled="{Binding ElementName=checkBoxBlocksDropDown, Path=DataContext.IsLoading, Converter={StaticResource InvertedBooleanConverter}}"
-										  Content="全不选" />
+                                          Content="取消全选" />
               </Grid>
               <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Margin="2" Padding="10,2" Click="OnApplyBlockSelection"
-										  IsEnabled="{Binding ElementName=checkBoxBlocksDropDown, Path=DataContext.IsLoading, Converter={StaticResource InvertedBooleanConverter}}"
-										  Content="应用" />
+                                          IsEnabled="{Binding ElementName=checkBoxBlocksDropDown, Path=DataContext.IsLoading, Converter={StaticResource InvertedBooleanConverter}}"
+                                          Content="应用" />
               </StackPanel>
               <ItemsControl ItemsSource="{Binding Source={StaticResource tileInfoViewSource}}" TextSearch.TextPath="Name"
 											  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -431,7 +431,7 @@
             </DockPanel>
           </Border>
         </Popup>
-        <Button Command="Find" ToolTip="选择方块...">...</Button>
+        <Button Command="Find" ToolTip="选择 方块...">...</Button>
         <Button Command="PreviousPage" ToolTip="上一个">
           <local:AutoGreyableImage Source="Resources/Previous.png" Width="16" />
         </Button>
@@ -441,54 +441,54 @@
         <Button Command="NextPage" ToolTip="下一个">
           <local:AutoGreyableImage Source="Resources/Next.png" Width="16" />
         </Button>
-        <CheckBox IsChecked="{Binding IsHighlighting}" Checked="OnIsHighlightingChanged" Unchecked="OnIsHighlightingChanged"
-							 ToolTip="全部高亮">全部高亮</CheckBox>
-        <Separator />
+                <CheckBox IsChecked="{Binding IsHighlighting}" Checked="OnIsHighlightingChanged" Unchecked="OnIsHighlightingChanged"
+                             ToolTip="高亮 所有" Content="高亮"/>
+                <Separator />
         <CheckBox IsChecked="{Binding World.InvertHighlight}" Checked="OnIsHighlightingChanged" Unchecked="OnIsHighlightingChanged"
-							 ToolTip="反转高亮">反转</CheckBox>
+                             ToolTip="反转 高亮">反转</CheckBox>
         <Separator />
-        <TextBlock VerticalAlignment="Center" Padding="0,0,4,0">颜色:</TextBlock>
+        <TextBlock VerticalAlignment="Center" Padding="0,0,4,0">颜色：</TextBlock>
         <xctk:ColorPicker SelectedColor="{Binding World.HighlightColor, FallbackValue=Black}" ColorMode="ColorCanvas" Width="48" />
         <Button Click="OnApplyBlockSelection" IsEnabled="{Binding IsLoading, Converter={StaticResource InvertedBooleanConverter}}" Content="应用" />
         <Slider Minimum="0" Maximum="1" Value="{Binding MaskOpacity, UpdateSourceTrigger=PropertyChanged}" Width="100" SmallChange=".1" LargeChange=".2"
-						  ToolTip="高亮透明度" />
+                          ToolTip="高亮 不透明度" />
       </ToolBar>
     </ToolBarTray>
     <StatusBar DockPanel.Dock="Bottom">
-      <StatusBarItem DockPanel.Dock="Left" ToolTip="位置（相对于地图中心）">
+      <StatusBarItem DockPanel.Dock="Left" ToolTip="位置（从地图中心）">
         <TextBlock Text="{Binding Position}" />
       </StatusBarItem>
-      <StatusBarItem DockPanel.Dock="Left" ToolTip="深度（相对于地表）">
+      <StatusBarItem DockPanel.Dock="Left" ToolTip="深度（从地表）">
         <TextBlock Text="{Binding Depth}" />
       </StatusBarItem>
-      <StatusBarItem DockPanel.Dock="Left" ToolTip="XY坐标（左上角为原点）">
+      <StatusBarItem DockPanel.Dock="Left" ToolTip="XY 坐标（从左上角）">
         <TextBlock Text="{Binding Coordinates}" />
       </StatusBarItem>
-      <StatusBarItem DockPanel.Dock="Left" ToolTip="格子名称">
+      <StatusBarItem DockPanel.Dock="Left" ToolTip="方块 名称">
         <TextBlock Text="{Binding HoverInfo.Name}" />
       </StatusBarItem>
-      <StatusBarItem DockPanel.Dock="Left" ToolTip="格子类型">
+      <StatusBarItem DockPanel.Dock="Left" ToolTip="方块 类型">
         <TextBlock Text="{Binding HoverInfo.TileUV}" />
       </StatusBarItem>
       <StatusBarItem DockPanel.Dock="Left" ToolTip="执行器">
         <TextBlock Text="{Binding HoverInfo.Actuator}" />
       </StatusBarItem>
-      <StatusBarItem DockPanel.Dock="Left" ToolTip="墙名称">
+      <StatusBarItem DockPanel.Dock="Left" ToolTip="墙 名称">
         <TextBlock Text="{Binding HoverInfo.WallName}" />
       </StatusBarItem>
-      <StatusBarItem DockPanel.Dock="Left" ToolTip="墙类型">
+      <StatusBarItem DockPanel.Dock="Left" ToolTip="墙 类型">
         <TextBlock Text="{Binding HoverInfo.WallType}" />
       </StatusBarItem>
       <StatusBarItem DockPanel.Dock="Left" ToolTip="液体">
         <TextBlock Text="{Binding HoverInfo.Liquid}" />
       </StatusBarItem>
-      <StatusBarItem DockPanel.Dock="Left" ToolTip="电线">
+      <StatusBarItem DockPanel.Dock="Left" ToolTip="导线">
         <TextBlock Text="{Binding HoverInfo.WireColors}" />
       </StatusBarItem>
-      <StatusBarItem DockPanel.Dock="Left" ToolTip="箱子名称">
+      <StatusBarItem DockPanel.Dock="Left" ToolTip="箱子 名称">
         <TextBlock Text="{Binding HoverInfo.ChestName}" />
       </StatusBarItem>
-      <StatusBarItem DockPanel.Dock="Left" ToolTip="标牌内容">
+      <StatusBarItem DockPanel.Dock="Left" ToolTip="标牌 文本">
         <TextBlock Text="{Binding HoverInfo.SignText}" />
       </StatusBarItem>
       <StatusBarItem DockPanel.Dock="Right">

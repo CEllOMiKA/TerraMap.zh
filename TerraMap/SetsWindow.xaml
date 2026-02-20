@@ -5,12 +5,12 @@
 									 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 									 xmlns:local="clr-namespace:TerraMap"
 									 mc:Ignorable="d"
-									 Title="编辑预设 - TerraMap" Height="300" Width="300"
+                                     Title="编辑 集合 - TerraMap" Height="300" Width="300"
 									 Icon="Resources/App.ico"
 									 Loaded="OnLoaded">
 	<Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Margin" Value="2" />
+		<Style TargetType="Button">
+			<Setter Property="Margin" Value="2" />
 			<Setter Property="MinWidth" Value="75" />
 		</Style>
 		<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -35,25 +35,25 @@
 	<DockPanel LastChildFill="True">
 		<ToolBarTray DockPanel.Dock="Top">
 			<ToolBar Band="0" BandIndex="0" ToolBarTray.IsLocked="True">
-				<Button Command="New" ToolTip="新建预设 (Insert)">
+                <Button Command="New" ToolTip="新建 集合 (Insert)">
 					<local:AutoGreyableImage Source="Resources/NewDocumentHS.png" Width="16" />
 				</Button>
-				<Button Command="Properties" ToolTip="编辑预设 (Enter)">
+                <Button Command="Properties" ToolTip="编辑 集合 (Enter)">
 					<local:AutoGreyableImage Source="Resources/Properties.png" Width="16" />
 				</Button>
-				<Button Command="Delete" ToolTip="删除预设 (Delete)">
+                <Button Command="Delete" ToolTip="删除 集合 (Delete)">
 					<local:AutoGreyableImage Source="Resources/DeleteHS.png" Width="16" />
 				</Button>
-				<Button Command="NavigationCommands.BrowseBack" ToolTip="上移 (Alt+Up)">
+                <Button Command="NavigationCommands.BrowseBack" ToolTip="上移 (Alt+Up)">
 					<local:AutoGreyableImage Source="Resources/Up.png" Width="16" />
 				</Button>
-				<Button Command="NavigationCommands.BrowseForward" ToolTip="下移 (Alt+Down)">
+                <Button Command="NavigationCommands.BrowseForward" ToolTip="下移 (Alt+Down)">
 					<local:AutoGreyableImage Source="Resources/Down.png" Width="16" />
 				</Button>
 			</ToolBar>
 		</ToolBarTray>
 		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-			<Button IsDefault="True" Click="OnAccept">确定(_O)</Button>
+            <Button IsDefault="True" Click="OnAccept">_确定</Button>
 		</StackPanel>
 		<ListBox ItemsSource="{Binding Sets}" SelectedItem="{Binding SelectedSet}">
 			<ListBox.Resources>

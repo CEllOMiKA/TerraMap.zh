@@ -30,7 +30,7 @@ namespace BuildVersionHelper
 		{
 			if (args == null || args.Length < 1)
 			{
-				Console.WriteLine("{0} [版本号]", Assembly.GetExecutingAssembly().GetName());
+				Console.WriteLine("{0} [version]", Assembly.GetExecutingAssembly().GetName());
 				Environment.Exit(1);
 			}
 
@@ -39,7 +39,7 @@ namespace BuildVersionHelper
 
 		static void UpdateAssemblyInfoFiles()
 		{
-			Console.WriteLine("正在更新程序集版本号");
+			Console.WriteLine("Updating assembly versions");
 
 			// read the current version from the assemblyinfo files
 			foreach (var assemblyInfoFilename in assemblyInfoFilenames)
@@ -48,7 +48,7 @@ namespace BuildVersionHelper
 				Regex regex = new Regex("\\d+\\.\\d+\\.\\d+", RegexOptions.CultureInvariant | RegexOptions.Compiled);
 				Match m = regex.Match(text);
 				if (!m.Success)
-					throw new Exception("无法在 AssemblyInfo.cs 文件中找到版本号");
+					throw new Exception("Cannot find a version in the AssemblyInfo.cs file.");
 
 				// replace the version in the file with our version
 				text = regex.Replace(text, version.ToString(3));

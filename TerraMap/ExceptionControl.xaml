@@ -31,9 +31,9 @@
 		<TextBlock Grid.Row="0" Margin="2" FontWeight="Bold" Text="{Binding Heading}" />
 		<TextBlock Grid.Row="1" Margin="12,2,2,2" Text="{Binding Message}" TextWrapping="Wrap" />
 		<Expander Grid.Row="2" Margin="2" IsExpanded="False" Visibility="{Binding Path=DetailsVisibility}">
-			<Expander.Header>
-				<TextBlock Text="Details" TextWrapping="Wrap" />
-			</Expander.Header>
+            <Expander.Header>
+                <TextBlock Text="详细信息" TextWrapping="Wrap" />
+            </Expander.Header>
 			<Expander.Content>
 				<Grid>
 					<Grid.RowDefinitions>
@@ -49,8 +49,8 @@
 			</Expander.Content>
 		</Expander>
 
-		<Button Content="C_lose" Command="ApplicationCommands.Close" MinWidth="75" MinHeight="23" HorizontalAlignment="Right" Margin="2" Grid.Row="3" 
+        <Button Content="关闭" Command="ApplicationCommands.Close" MinWidth="75" MinHeight="23" HorizontalAlignment="Right" Margin="2" Grid.Row="3" 
 				  Visibility="{Binding Path=CancelButtonVisibility, ElementName=exceptionControl}"  />
-		<Button Content="_Copy Details" Command="ApplicationCommands.Copy" MinWidth="75" MinHeight="23" HorizontalAlignment="Left" Margin="2" Grid.Row="3" Visibility="{Binding Path=DetailsVisibility}" />
+        <Button Content="复制 详细信息" Command="ApplicationCommands.Copy" MinWidth="75" MinHeight="23" HorizontalAlignment="Left" Margin="2" Grid.Row="3" Visibility="{Binding Path=DetailsVisibility}" />
 	</Grid>
 </UserControl>

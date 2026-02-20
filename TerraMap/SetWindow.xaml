@@ -5,7 +5,7 @@
 									 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 									 xmlns:local="clr-namespace:TerraMap"
 									 mc:Ignorable="d"
-									 Title="编辑预设内容 - TerraMap" Height="300" Width="300"
+                                     Title="编辑 集合项 - TerraMap" Height="300" Width="300"
 									 Icon="Resources/App.ico"
 									 Loaded="OnLoaded">
 	<Window.Resources>
@@ -38,21 +38,21 @@
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-			<Label>名称:</Label>
+            <Label>名称：</Label>
 			<TextBox Grid.Column="1" Text="{Binding Set.Name}" />
 		</Grid>
 		<ToolBarTray DockPanel.Dock="Top">
 			<ToolBar Band="0" BandIndex="0" ToolBarTray.IsLocked="True">
-				<Button Command="New" ToolTip="添加项目 (Insert)">
+                <Button Command="New" ToolTip="添加 项目 (Insert)">
 					<local:AutoGreyableImage Source="Resources/NewDocumentHS.png" Width="16" />
 				</Button>
-				<Button Command="Delete" ToolTip="移除项目 (Delete)">
+                <Button Command="Delete" ToolTip="移除 项目 (Delete)">
 					<local:AutoGreyableImage Source="Resources/DeleteHS.png" Width="16" />
 				</Button>
 			</ToolBar>
 		</ToolBarTray>
 		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-			<Button IsDefault="True" Click="OnAccept">确定(_O)</Button>
+            <Button IsDefault="True" Click="OnAccept">_确定</Button>
 		</StackPanel>
 		<ListBox ItemsSource="{Binding Set.ObjectInfoViewModels}" SelectedItem="{Binding SelectedItem}" SelectionMode="Extended">
 			<ListBox.Resources>
